@@ -18,56 +18,71 @@
 #include<stdlib.h>
 #include<windows.h>
 #include<vector>
-
+#include <iomanip>
 
 using namespace std;
 
 int main() {
-	ifstream inFS; // Input file steam
+	ifstream inFS; // Input file stream
 
 	int choice;
+	int num;
+	int i = 1;
 	// Displays menu
 	do {
 	
-		cout << "Select file to process:" << endl;
-		cout << "1. mixed.txt" << endl;
-		cout << "2. valid.txt" << endl;
-		cout << "3. three.txt" << endl;
-		cout << "4. missing.txt" << endl;
-		cout << endl;
+		cout << "Select file to process: \n";
+		cout << "1. mixed.txt \n";
+		cout << "2. valid.txt \n";
+		cout << "3. three.txt \n";
+		cout << "4. missing.txt \n";
 		cout << "Choice: ";
 		cin >> choice;
 		system("cls");
 		
 
-		} while (choice > 4 || choice < 1);
+	} while (choice > 4 || choice < 1);
 
-		// Inputs 1-4
-		while (choice < 5 && choice > 0) {
+	// Inputs 1-4
+	switch (choice) {
 
-			// If input is 1
-			if (choice == 1) {
-				inFS.open("mixed.txt");
+		// If input is 1, open mixed.txt
+		case 1:
+			inFS.open("mixed.txt");
+			if (inFS.is_open()) {
+				break;
+			}
+		// If input is 2, open valid.txt
+		case 2: 
+			inFS.open("valid.txt");
+			if (inFS.is_open()) {
+				break;
+			}
+	
+		// If input is 3, open valid.txt
+		case 3:
+			inFS.open("three.txt");
+			if (inFS.is_open()) {
 				break;
 			}
 
-			// If input is 2
-			if (choice == 2) {
-				inFS.open("valid.txt");
-				break;
-			}
-			// If input is 3
-			if (choice == 3) {
-				inFS.open("three.txt");
-				break;
-			}
+		// If input is 4, display error
+		case 4:
+			cout << "ERROR: Data file not found.";
+			break;
+	}
 
-			// If input is 4
-			if (choice == 4) {
-				cout << "ERROR: Data file not found" << endl;
-				break;
-			}
+
+	// 
+	while (inFS >> num) {
+		if (num >= 9999) {
+			break;
 		}
+		cout << i << setw(4) << " | " << num << '\n';
+		i++;
+	}
+
+	inFS.close();
 
 
 	return 0;

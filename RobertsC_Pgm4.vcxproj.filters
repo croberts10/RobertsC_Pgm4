@@ -20,13 +20,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Downloads\three.txt">
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RobertsC_Pgm4.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mixed.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\..\..\Downloads\valid.txt">
+    <Text Include="valid.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="..\..\..\Downloads\mixed.txt">
+    <Text Include="three.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

@@ -130,9 +130,15 @@
     <ClCompile Include="RobertsC_Pgm4.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\Downloads\mixed.txt" />
-    <Text Include="..\..\..\Downloads\three.txt" />
-    <Text Include="..\..\..\Downloads\valid.txt" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RobertsC_Pgm4.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mixed.txt" />
+    <Text Include="three.txt" />
+    <Text Include="valid.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
