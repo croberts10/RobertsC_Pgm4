@@ -23,7 +23,6 @@
 using namespace std;
 
 int main() {
-	freopen(".txt", "w", stdout);
 	ifstream inFS; // Input file stream
 	ofstream outFS; // Output file stream for extra credit
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Color variables
