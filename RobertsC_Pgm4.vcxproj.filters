@@ -39,5 +39,8 @@
     <Text Include="three.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="bar-graph.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

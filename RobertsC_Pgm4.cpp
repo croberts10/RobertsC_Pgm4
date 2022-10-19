@@ -4,7 +4,7 @@
 *
 * Purpose: The purpose of the program is to practice debugging, using different variables and formatting output. This is done by creating input/output text files
 * to create a bar graph within the console.
-* 
+*
 * Input: The user will be given a menu of text files to choose from. They will enter numbers until they enter a valid number from the menu.
 *
 * Processing: The program processes various calculations including caluclating number of X's needed for bar graph, 3 min/max values, invalid values, etc.
@@ -31,9 +31,10 @@ int main() {
 	int i = 1, p = 10, j = 0; // Counter ints
 	int small1 = 1000000, small2 = 1000000, small3 = 1000000; // Min ints
 	int large1 = -1000000, large2 = -1000000, large3 = -1000000; // Max ints
+	outFS.open("bar-graph.txt"); // Open text file to write (EXTRA CREDIT)
 	// Displays menu
 	do {
-	
+
 		cout << "Select file to process: \n";
 		cout << "1. mixed.txt \n";
 		cout << "2. valid.txt \n";
@@ -42,45 +43,45 @@ int main() {
 		cout << "Choice: ";
 		cin >> choice;
 		system("cls");
-		
+
 	} while (choice > 4 || choice < 1);
 
 	// Inputs 1-4
 	switch (choice) {
 		// If input is 1, open mixed.txt
-		case 1:
-			inFS.open("mixed.txt");
-			if (inFS.is_open()) {
-				cout << "Bar graph for data contained in mixed.txt\n\n";
-				break;
-			}
+	case 1:
+		inFS.open("mixed.txt");
+		if (inFS.is_open()) {
+			cout << "Bar graph for data contained in mixed.txt\n\n"; outFS << "Bar graph for data contained in mixed.txt\n\n";
+			break;
+		}
 		// If input is 2, open valid.txt
-		case 2: 
-			inFS.open("valid.txt");
-			if (inFS.is_open()) {
-				cout << "Bar graph for data contained in valid.txt\n\n";
-				break;
-			}
+	case 2:
+		inFS.open("valid.txt");
+		if (inFS.is_open()) {
+			cout << "Bar graph for data contained in valid.txt\n\n"; outFS << "Bar graph for data contained in valid.txt\n\n";
+			break;
+		}
 		// If input is 3, open valid.txt
-		case 3:
-			inFS.open("three.txt");
-			if (inFS.is_open()) {
-				cout << "Bar graph for data contained in three.txt\n\n";
-				break;
-			}
+	case 3:
+		inFS.open("three.txt");
+		if (inFS.is_open()) {
+			cout << "Bar graph for data contained in three.txt\n\n"; outFS << "Bar graph for data contained in three.txt\n\n";
+			break;
+		}
 		// If input is 4, display error
-		case 4:
-			cout << "ERROR: Data file not found.";
-			return 1;
+	case 4:
+		cout << "ERROR: Data file not found."; outFS << "ERROR: Data file not found.";
+		return 1;
 	}
 
 	while (inFS >> num) {  // Create X axis and bar graph of X's
 		if (num >= 9999) {
 			break;
 		}
-		SetConsoleTextAttribute(hConsole, WHITE); 
-		cout << setfill(' ') << setw(2) << i;
-		cout << " | ";
+		SetConsoleTextAttribute(hConsole, WHITE);
+		cout << setfill(' ') << setw(2) << i; outFS << setfill(' ') << setw(2) << i;
+		cout << " | "; outFS << " | ";
 		if (num < 0) {
 			SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE);  // Sets background to blue if negative
 			invalid += 1;
@@ -90,7 +91,7 @@ int main() {
 			invalid += 1;
 		}
 		for (j = 1; j <= fabs(num); j++) {
-			cout << 'X';
+			cout << 'X'; outFS << 'X';
 			if (j > 112) {
 				break;
 			}
@@ -122,34 +123,35 @@ int main() {
 		else if (num > large3) {
 			large3 = num;
 		}
-		cout << '\n';
-		i++;	
+		cout << '\n'; outFS << '\n';
+		i++;
 	}
 	for (i = 0; i <= 118; i++) {	// Create Y axis of '-' and sets max value for console screen
-		cout << '-';
+		cout << '-'; outFS << '-';
 	}
-	cout << '\n';
-	cout << "     1";	// Create Y axis of number values
+	cout << '\n'; outFS << '\n';
+	cout << "     1"; outFS << "     1";	// Create Y axis of number values
 	for (i = 0; i <= 10; i++) {
-		cout << "        " << p;
+		cout << "        " << p; outFS << "        " << p;
 		p = p + 10;
 	}
-	cout << "\n\n";
+	cout << "\n\n"; outFS << "\n\n";
 
 	// Create smallest 3 values
-	cout << "SMALLEST\n""========\n";
-	cout << "The smallest value: " << small1 << '\n';
-	cout << "2nd smallest value: " << small2 << '\n';
-	cout << "3rd smalelst value: " << small3 << '\n';
+	cout << "SMALLEST\n""========\n"; outFS << "SMALLEST\n""========\n";
+	cout << "The smallest value: " << small1 << '\n'; outFS << "The smallest value: " << small1 << '\n';
+	cout << "2nd smallest value: " << small2 << '\n'; outFS << "2nd smallest value: " << small2 << '\n';
+	cout << "3rd smalelst value: " << small3 << '\n'; outFS << "3rd smalelst value: " << small3 << '\n';
 	// Create 3 largest values
-	cout << "LARGEST\n""========\n";
-	cout << "The largest value: " << large1 << '\n';
-	cout << "2nd largest value: " << large2 << '\n';
-	cout << "3rd largest value: " << large3 << '\n';
+	cout << "LARGEST\n""========\n"; outFS << "LARGEST\n""========\n";
+	cout << "The largest value: " << large1 << '\n'; outFS << "The largest value: " << large1 << '\n';
+	cout << "2nd largest value: " << large2 << '\n'; outFS << "2nd largest value: " << large2 << '\n';
+	cout << "3rd largest value: " << large3 << '\n'; outFS << "3rd largest value: " << large3 << '\n';
 	// Shows how many invalid numbers
-	cout << "INVALID\n""========\n";
-	cout << "There are " << invalid << " values in the data.\n";
+	cout << "INVALID\n""========\n"; outFS << "INVALID\n""========\n";
+	cout << "There are " << invalid << " values in the data.\n"; outFS << "There are " << invalid << " values in the data.\n";
 	// Close file
 	inFS.close();
+	outFS.close();
 	return 0;
 }

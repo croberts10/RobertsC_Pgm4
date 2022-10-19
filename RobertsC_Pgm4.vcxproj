@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="mixed.txt" />
+    <Text Include="bar-graph.txt" />
     <Text Include="three.txt" />
     <Text Include="valid.txt" />
   </ItemGroup>
